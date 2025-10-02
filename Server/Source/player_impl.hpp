@@ -853,12 +853,6 @@ public:
 		PacketHelper::send(setPlayerArmourRPC, *this);
 	}
 
-	void setPlayerMaxHealth() override
-	{
-		setHealth(100.0f);
-		setArmour(100.0f);
-	}
-
 	float getArmour() const override
 	{
 		return armour_;
