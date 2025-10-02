@@ -545,6 +545,12 @@ SCRIPT_API(SetPlayerArmedWeapon, bool(IPlayer& player, uint8_t weapon))
 	return true;
 }
 
+SCRIPT_API(SetPlayerMaxHealth, bool(IPlayer& player))
+{
+    player.setPlayerMaxHealth();
+    return true;
+}
+
 SCRIPT_API(SetPlayerChatBubble, bool(IPlayer& player, cell const* format, uint32_t colour, float drawdistance, int expiretime))
 {
 	AmxStringFormatter text(format, GetAMX(), GetParams(), 5);
