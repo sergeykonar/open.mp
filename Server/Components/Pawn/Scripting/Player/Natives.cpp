@@ -172,8 +172,8 @@ SCRIPT_API(SetPlayerArmour, bool(IPlayer& player, float armour))
 
 SCRIPT_API(SetPlayerMaxHealth, bool(IPlayer& player))
 {
-    player.setPlayerMaxHealth();
-    return true;
+	player.setPlayerMaxHealth();
+	return true;
 }
 
 SCRIPT_API(GetPlayerArmour, bool(IPlayer& player, float& armour))
@@ -553,8 +553,8 @@ SCRIPT_API(SetPlayerArmedWeapon, bool(IPlayer& player, uint8_t weapon))
 
 SCRIPT_API(SetPlayerMaxHealth, bool(IPlayer& player))
 {
-    player.setPlayerMaxHealth();
-    return true;
+	player.setPlayerMaxHealth();
+	return true;
 }
 
 SCRIPT_API(SetPlayerChatBubble, bool(IPlayer& player, cell const* format, uint32_t colour, float drawdistance, int expiretime))

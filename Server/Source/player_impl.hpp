@@ -855,8 +855,8 @@ public:
 
 	void setPlayerMaxHealth() override
 	{
-	    setHealth(100.0f);
-	    setArmour(100.0f);
+		setHealth(100.0f);
+		setArmour(100.0f);
 	}
 
 	float getArmour() const override
@@ -866,8 +866,8 @@ public:
 
 	void setPlayerMaxHealth() override
 	{
-	    setHealth(100.0f);
-	    setArmour(100.0f);
+		setHealth(100.0f);
+		setArmour(100.0f);
 	}
 
 	void setGravity(float gravity) override
