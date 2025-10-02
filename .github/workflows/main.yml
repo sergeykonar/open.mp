@@ -1,0 +1,56 @@
+name: Update ABI reference
+
+# Trigger manually with branch selection
+on:
+  workflow_dispatch:
+    inputs:
+      target_branch:
+        description: 'Select branch to update ABI reference'
+        required: true
+        default: main
+        type: choice
+        options:
+          - main
+          - develop
+          - release
+
+jobs:
+  abi-update:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout selected branch
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          clean: true
+          submodules: recursive
+          fetch-depth: 0
+          ref: ${{ github.event.inputs.target_branch }}
+
+      # Determine build version
+      - name: Declare build variables
+        id: vars
+        shell: bash
+        run: |
+          BUILD_VERSION=$(git describe --always --tags)
+          echo "build_version=$BUILD_VERSION" >> $GITHUB_OUTPUT
+
+      # Build SDK & regenerate ABI reference
+      - name: Build & regenerate ABI reference
+        shell: bash
+        run: |
+          cd docker
+          chmod +x ./abicheck.sh
+          chmod +x ./abicheck_ubuntu-18.04/docker-entrypoint.sh
+          CONFIG=RelWithDebInfo BUILD_SERVER=0 BUILD_TOOLS=1 UPDATE_REFERENCE=1 ./abicheck.sh
+
+      # Commit & push updated ABI reference
+      - name: Commit ABI reference update
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docker/ref
+          git commit -m "chore(abi): update ABI reference for ${{ steps.vars.outputs.build_version }}" || echo "No changes to commit"
+          git push origin ${{ github.event.inputs.target_branch }}
