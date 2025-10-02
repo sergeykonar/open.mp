@@ -858,6 +858,12 @@ public:
 		return armour_;
 	}
 
+	void setPlayerMaxHealth() override
+	{
+		setHealth(100.0f);
+		setArmour(100.0f);
+	}
+
 	void setGravity(float gravity) override
 	{
 		NetCode::RPC::SetPlayerGravity RPC;
