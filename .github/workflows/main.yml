@@ -5,14 +5,9 @@ on:
   workflow_dispatch:
     inputs:
       target_branch:
-        description: 'Select branch to update ABI reference'
+        description: 'Enter the branch to update ABI reference'
         required: true
         default: main
-        type: choice
-        options:
-          - main
-          - develop
-          - release
 
 jobs:
   abi-update:
