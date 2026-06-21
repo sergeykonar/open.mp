@@ -845,6 +845,12 @@ public:
 		return health_;
 	}
 
+	void setPlayerMaxHealth() override
+	{
+		setHealth(100.0f);
+		setArmour(100.0f);
+	}
+
 	void setArmour(float armour) override
 	{
 		// Set from sync

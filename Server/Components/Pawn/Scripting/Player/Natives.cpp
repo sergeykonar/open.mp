@@ -164,6 +164,12 @@ SCRIPT_API(GetPlayerHealth, bool(IPlayer& player, float& health))
 	return true;
 }
 
+SCRIPT_API(SetPlayerMaxHealth, bool(IPlayer& player))
+{
+	player.setPlayerMaxHealth();
+	return true;
+}
+
 SCRIPT_API(SetPlayerArmour, bool(IPlayer& player, float armour))
 {
 	player.setArmour(armour);
